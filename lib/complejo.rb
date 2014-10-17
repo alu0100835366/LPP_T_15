@@ -1,0 +1,36 @@
+class Complejo
+  attr_reader :real, :img
+  attr_writer :real, :img
+
+  def initialize(real, img)
+    @real, @img = real, img
+  end
+  
+  def to_s
+    if img >= 0
+      "#{real}+#{img}i"
+    else
+      "#{real}#{img}i"
+    end
+  end
+  
+  def +(var)
+    Complejo.new(@real + var.real, @img + var.img)
+  end
+  
+  def -(var)
+    Complejo.new(@real - var.real, @img - var.img)
+  end
+  
+  def *(var)
+    if var.is_a? Complejo
+      Complejo.new((@real*var.real)-(@img*var.img),(@real*var.img)+(@img*var.real))
+    elsif var.is_a? Numeric
+      Complejo.new(@real * var, @img * var)
+    end
+  end
+  
+  def / (var)
+    Complejo.new(((@real*var.real)+(@img*var.img))/(var.real*var.real+var.img*var.img),((@img*var.real)-(@real*var.img))/(var.real*var.real+var.img*var.img))
+  end
+end

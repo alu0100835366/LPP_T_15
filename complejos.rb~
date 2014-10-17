@@ -1,0 +1,35 @@
+class Comp
+  attr_reader :real, :img
+  attr_writer :real, :img
+  def initialize(x, y)
+    @real, @img = real, img
+  end
+  
+  def to_s
+    if img >= 0
+      "#{real}+#{img}i"
+    else
+      "#{real}#{img}i"
+    end
+  end
+  
+  def +(var)
+    Comp.new(@real + var.real, @img + var.img)
+  end
+  
+  def - (var)
+    Comp.new(@real - var.real, @img - var.img)
+  end
+  
+  def * (var)
+    if other.class.to_s = "Comp"
+      Comp.new((@real*var.real)-(@img*var.img),(@real*var.img)+(@img*var.real))
+    else
+      Comp.new(@real * var, @img * var)
+    end
+  end
+  
+  def / (var)
+    Comp.new((@real*var.real)-(@img*var.img)/(var.real*var.real+var.img*var.img),(@real*var.img)+(@img*var.real)/(var.real*var.real+var.img*var.img))
+  end
+end
